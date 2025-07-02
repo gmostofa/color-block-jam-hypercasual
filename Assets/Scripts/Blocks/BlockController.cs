@@ -60,10 +60,11 @@ public class BlockController : MonoBehaviour
         GridManager.Instance.RegisterBlock(this);
         HighlightManager.Instance.ClearHighlights();
 
-        // Check if over matching door
+        // ✅ Only now: check if on correct door
         if (GameManager.Instance.IsOverCorrectDoor(this))
         {
-            SolveAndVanish();
+            // ✅ Add small delay or feedback before vanish
+            Invoke(nameof(SolveAndVanish), 0.1f); // Or use a coroutine if preferred
         }
     }
 
@@ -73,12 +74,18 @@ public class BlockController : MonoBehaviour
         GridManager.Instance.UnregisterBlock(this);
         transform.DOKill();
 
-        transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.InBack).OnComplete(() =>
+        transform.DOPunchScale(Vector3.one * 0.2f, 0.2f, 8, 0.5f).OnComplete(() =>
         {
-            GameManager.Instance.MarkBlockSolved(this);
-            Destroy(gameObject);
+            transform.DOScale(Vector3.zero, 0.25f)
+                .SetEase(Ease.InBack)
+                .OnComplete(() =>
+                {
+                    GameManager.Instance.MarkBlockSolved(this);
+                    Destroy(gameObject);
+                });
         });
     }
+
 
     public bool CanMoveTo(Vector2Int target)
     {
