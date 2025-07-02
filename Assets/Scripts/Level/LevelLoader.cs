@@ -7,7 +7,7 @@ public class LevelLoader : MonoBehaviour
     void Start()
     {
         SpawnBlock(new Vector2Int(1, 1), new Vector2Int(1, 2)); // 1x2 vertical block
-        SpawnBlock(new Vector2Int(3, 3), new Vector2Int(2, 1)); // 2x1 horizontal block
+        SpawnBlock(new Vector2Int(1, 4), new Vector2Int(2, 1)); // 2x1 horizontal block
     }
 
     void SpawnBlock(Vector2Int gridPos, Vector2Int size)

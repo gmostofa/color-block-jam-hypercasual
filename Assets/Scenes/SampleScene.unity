@@ -451,8 +451,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7744cc65f84ec1d4e9d24105f3f22802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 5
-  height: 4
+  width: 4
+  height: 5
   cellSize: 1
   offset: {x: 0.5, y: 0, z: 0.5}
   tilePrefab: {fileID: 7171547018107847497, guid: ff42a5d7a49d648f1b574a473c4c0e66, type: 3}
