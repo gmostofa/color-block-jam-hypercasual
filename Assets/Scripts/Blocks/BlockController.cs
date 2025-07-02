@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class BlockController : MonoBehaviour
 {
@@ -105,6 +106,11 @@ public class BlockController : MonoBehaviour
             (size.y - 1) * GridManager.Instance.cellSize * 0.5f
         );
 
-        transform.position = baseWorldPos + centerOffset;
+        Vector3 targetPosition = baseWorldPos + centerOffset;
+        Vector3 finalPosition = targetPosition + new Vector3(0, 0.5f, 0);
+
+        // Animate the movement with DoTween
+        transform.DOMove(finalPosition, 0.25f).SetEase(Ease.OutQuad);
     }
+
 }
