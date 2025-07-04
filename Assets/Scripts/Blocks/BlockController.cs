@@ -9,6 +9,9 @@ public class BlockController : MonoBehaviour
     public int blockID; // Unique to match door
     public bool isSolved = false;
 
+    public Color blockColor;
+
+    
     private Vector3 dragStartWorld;
     private Vector2Int originalGridPos;
     private bool isDragging = false;
@@ -61,7 +64,7 @@ public class BlockController : MonoBehaviour
         HighlightManager.Instance.ClearHighlights();
 
         // ✅ Only now: check if on correct door
-        if (GameManager.Instance.IsOverCorrectDoor(this))
+        if (GameManager.Instance.IsOverCorrectGate(this))
         {
             // ✅ Add small delay or feedback before vanish
             Invoke(nameof(SolveAndVanish), 0.1f); // Or use a coroutine if preferred

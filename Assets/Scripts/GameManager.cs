@@ -21,36 +21,41 @@ public class GameManager : MonoBehaviour
             allBlocks.Add(block);
     }
 
-    public bool IsOverCorrectDoor(BlockController block)
+    public bool IsOverCorrectGate(BlockController block)
     {
         var blockTiles = block.GetOccupiedTiles(block.gridPos);
 
-        foreach (var door in allDoors)
+        foreach (var gate in allDoors)
         {
-            if (door.doorID != block.blockID)
-                continue;
+            if (!ColorsMatch(block.blockColor, gate.gateColor)) continue;
 
-            var doorTiles = door.GetOccupiedTiles();
+            var gateTiles = gate.GetOccupiedTiles();
+            if (blockTiles.Count != gateTiles.Count) continue;
 
-            if (blockTiles.Count != doorTiles.Count)
-                continue;
-
-            bool match = true;
-            for (int i = 0; i < blockTiles.Count; i++)
+            bool exactMatch = true;
+            foreach (var tile in blockTiles)
             {
-                if (!doorTiles.Contains(blockTiles[i]))
+                if (!gateTiles.Contains(tile))
                 {
-                    match = false;
+                    exactMatch = false;
                     break;
                 }
             }
 
-            if (match)
+            if (exactMatch)
                 return true;
         }
 
         return false;
     }
+
+    private bool ColorsMatch(Color a, Color b)
+    {
+        return Mathf.Approximately(a.r, b.r) &&
+               Mathf.Approximately(a.g, b.g) &&
+               Mathf.Approximately(a.b, b.b);
+    }
+
 
 
     public void MarkBlockSolved(BlockController block)

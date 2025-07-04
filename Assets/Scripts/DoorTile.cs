@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class DoorTile : MonoBehaviour
 {
+    public Color gateColor;
     public Vector2Int gridPosition;
     public Vector2Int size = Vector2Int.one;
-    public int doorID;
 
     public List<Vector2Int> GetOccupiedTiles()
     {
@@ -15,6 +15,7 @@ public class DoorTile : MonoBehaviour
             tiles.Add(gridPosition + new Vector2Int(x, y));
         return tiles;
     }
+
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
