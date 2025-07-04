@@ -22,6 +22,8 @@ public class BlockController : MonoBehaviour
         SnapToGrid();
         GridManager.Instance.RegisterBlock(this);
         GameManager.Instance.RegisterBlock(this);
+        
+        ApplyColor(gameObject,blockColor);
     }
 
     void OnMouseDown()
@@ -148,5 +150,18 @@ public class BlockController : MonoBehaviour
             return ray.GetPoint(dist);
         return Vector3.zero;
     }
+    
+    private void ApplyColor(GameObject go, Color color)
+    {
+        Renderer renderer = go.GetComponent<Renderer>();
+        if (!renderer) return;
+
+        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+        renderer.GetPropertyBlock(mpb);
+        mpb.SetColor("_BaseColor", color); // works for Unlit or legacy shaders
+        renderer.SetPropertyBlock(mpb);
+    }
+
+
 
 }

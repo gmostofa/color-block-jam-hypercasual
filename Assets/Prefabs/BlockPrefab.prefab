@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4729382536620191206}
   - component: {fileID: 1940110826522422607}
   m_Layer: 0
-  m_Name: GridBlock
+  m_Name: BlockPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,3 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0}
   size: {x: 1, y: 1}
+  blockID: 0
+  isSolved: 0
+  blockColor: {r: 0, g: 1, b: 0.03938818, a: 1}
