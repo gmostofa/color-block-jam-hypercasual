@@ -69,7 +69,7 @@ public class BlockController : MonoBehaviour
         if (GameManager.Instance.IsOverCorrectGate(this))
         {
             // ✅ Add small delay or feedback before vanish
-            Invoke(nameof(SolveAndVanish), 0.1f); // Or use a coroutine if preferred
+            Invoke(nameof(SolveAndVanish), 0.5f); // Or use a coroutine if preferred
         }
     }
 
